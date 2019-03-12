@@ -3,7 +3,6 @@ const path = require("path");
 const bodyParser = require('body-parser');
 
 const users = require('./routes/api/users');
-const vote = require('./routes/api/vote');
 
 const { mongoose } = require('./db/mongoose');
 const { ObjectID } = require('mongodb');
