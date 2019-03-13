@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 //API route
 const users = require('./routes/api/users');
 const schools = require('./routes/api/schools');
+const classes = require('./routes/api/classes');
 
 const { mongoose } = require('./db/mongoose');
 const { ObjectID } = require('mongodb');
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/users', users);
 app.use('/api/schools', schools);
+app.use('/api/classes', classes);
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));

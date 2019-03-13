@@ -20,9 +20,14 @@ router.post('/add', (req, res) => {
 
 // Enrolling into a school for student
 router.post('/enroll', authenticate, (req, res) => {
-    var body = _.pick(req.body, ['schoolID']);
-    Student.find({ _creator: req.user._id}).then((student) => {
-        student.classes.push(body.schoolID);
+    var body = _.pick(req.body, ['classID']);
+    Student.findOne({ _creator: req.user._id}).then((student) => {
+        student.classes.push(body.classID);
+        student.save().then(() => {
+            res.status(200).send(student);
+        }).catch(e => {
+            res.status(400).send(e);
+        });
     });
 });
 
