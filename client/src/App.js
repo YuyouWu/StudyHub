@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'antd/dist/antd.css';
+
+import Main from './components/Main';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1 style={{color: 'white'}}> Planista </h1>
+        <Main/>
       </div>
     );
   }
