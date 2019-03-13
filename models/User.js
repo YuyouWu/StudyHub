@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const secretKey = process.env.SECRET_KEY || 'TESTKEY';
 
 var UserSchema = new mongoose.Schema({
-  username: {
+  email: {
     type: String,
     required: true,
     trim: true,
@@ -35,7 +35,7 @@ UserSchema.methods.toJSON = function () {
   var user = this;
   var userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'username']);
+  return _.pick(userObject, ['_id', 'email']);
 };
 
 UserSchema.methods.generateAuthToken = function () {
