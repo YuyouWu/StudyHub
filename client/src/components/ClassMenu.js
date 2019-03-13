@@ -9,7 +9,7 @@ class ClassMenu extends Component {
                 <h1 style={{ color: 'white', marginLeft: '30px', marginTop: '20px', marginBottom: '15px' }}>Planista</h1>
                 <Menu
                     theme='dark'
-                    style={{ width: '100%', height: '80vh' }}
+                    style={{ width: '100%'}}
                     mode="inline"
                 >
                     <Menu.Item key="1">CS 101</Menu.Item>

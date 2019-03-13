@@ -8,10 +8,11 @@ const {
 } = Layout;
 
 class Main extends Component {
+
     render() {
         return (
             <div>
-                <Layout style={{ minHeight: '100vh' }}>
+                <Layout style={{ minHeight: '100vh'}}>
                     <Sider>
                         <ClassMenu />
                     </Sider>
@@ -19,7 +20,6 @@ class Main extends Component {
                         <Content>
                             <TabMenu/>
                         </Content>
-                        <Footer style={{height:'20px'}}>Footer</Footer>
                     </Layout>
                 </Layout>
             </div>
