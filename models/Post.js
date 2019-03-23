@@ -1,24 +1,28 @@
 var mongoose = require('mongoose');
 
-var Posts = mongoose.model('Posts', {
+var Post = mongoose.model('Post', {
     title: {
         type: String,
         required: true,
         minlength: 1,
         trim: true
     },
+    body: {
+        type: String
+    },
     _creator: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    class: {
+    classID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     score: {
         type: Number,
-        required = true
+        required: true,
+        default: 0
     }
 });
 
-module.exports = { Posts };
+module.exports = { Post };
