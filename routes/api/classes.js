@@ -8,7 +8,7 @@ const { ObjectID } = require('mongodb');
 
 var { authenticate } = require('../../middleware/authenticate');
 
-//Adding a class into database
+//Adding a class into database Class Model
 router.post('/add', (req, res) => {
   var body = _.pick(req.body, ['name', 'number', 'school']);
   var schoolClass = new Class(body);
@@ -19,7 +19,7 @@ router.post('/add', (req, res) => {
   });
 });
 
-// Enrolling into a school for student
+//Enrolling into a school for student
 router.post('/enroll', authenticate, (req, res) => {
   var body = _.pick(req.body, ['classID']);
   Student.findOne({ _creator: req.user._id }).then((student) => {
