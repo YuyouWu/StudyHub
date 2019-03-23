@@ -3,44 +3,56 @@ import { connect } from 'react-redux';
 import { getClasses, getClass } from '../actions/classActions';
 
 import { Menu } from 'antd';
+import async from 'async';
 
 class ClassMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
             classes: [''],
-            loading: true,
-            forceUpdate: ''
+            loading: true
         }
     }
 
     async componentDidMount() {
-        var classes = [];
-        await this.props.getClasses().then((res) => {
-            res.payload.forEach(subject => {
-                this.props.getClass(subject).then(classObj => {
-                    classes.push(classObj.payload.data);
-                    this.setState({
-                        forceUpdate: classObj.payload.data
-                    });
+        let classes = [];
+        this.loadClassesID().then(classArr => {
+            classArr.forEach(classID => {
+                this.loadClassesObj(classID).then((classObj) => {
+                    classes.push(classObj);
+                    if (classes.length === classArr.length) {
+                        this.setState({
+                            classes: classes,
+                            loading: false
+                        });
+                    }
                 });
             });
         });
-        this.setState({
-            classes: classes,
-            loading: false
-        }, () => {
-            console.log(this.state);
-        });
+    }
 
-        // setTimeout(() => {
-        //     this.setState({
-        //         classes: classes,
-        //         loading: false
-        //     }, () => {
-        //         console.log(this.state);
-        //     });
-        // }, 1000);
+    loadClassesID = () => {
+        let classArr = [];
+        return new Promise((resolve, reject) => {
+            this.props.getClasses().then(res => {
+                classArr = res.payload;
+                resolve(classArr);
+            }).catch(e => {
+                reject(e);
+            });
+        });
+    }
+
+    loadClassesObj = (classID) => {
+        let classObj;
+        return new Promise((resolve, reject) => {
+            this.props.getClass(classID).then(res => {
+                classObj = res.payload.data;
+                resolve(classObj);
+            }).catch(e => {
+                reject(e);
+            });
+        })
     }
 
     render() {
