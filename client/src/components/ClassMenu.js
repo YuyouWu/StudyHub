@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getClasses, getClass } from '../actions/classActions';
 
 import { Menu } from 'antd';
-import async from 'async';
+// import async from 'async';
 
 class ClassMenu extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class ClassMenu extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         let classes = [];
         this.loadClassesID().then(classArr => {
             classArr.forEach(classID => {
