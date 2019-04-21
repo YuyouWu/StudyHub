@@ -13,10 +13,12 @@ class Main extends Component {
         return (
             <div>
                 <Layout style={{ minHeight: '100vh'}}>
-                    <Sider>
+                    <Sider style={{
+                        overflow: 'auto', height: '100vh', position: 'fixed', left: 0,
+                    }}>
                         <ClassMenu />
                     </Sider>
-                    <Layout>
+                    <Layout style={{ marginLeft: 200 }}>
                         <Content>
                             <TabMenu/>
                         </Content>
