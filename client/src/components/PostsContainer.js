@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { List, Avatar } from 'antd';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+import { getCurrentClass } from '../actions/classActions';
+
+
 class PostsContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             posts: [],
             loading: true
         }
     }
 
-    componentDidMount() {
+    componentDidMount() {        
+        this.props.getCurrentClass();
+
+        console.log(this.props);
+
         axios.get('https://jsonplaceholder.typicode.com/posts').then(posts => {
             this.setState({
                 posts: posts.data,
@@ -41,4 +49,8 @@ class PostsContainer extends Component {
     }
 }
 
-export default PostsContainer;
+const mapStateToProps = (state) => ({
+    currentClass: state.classes.currentClassID
+});
+
+export default connect(mapStateToProps, { getCurrentClass })(PostsContainer);

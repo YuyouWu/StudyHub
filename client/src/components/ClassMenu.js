@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getClasses, getClass } from '../actions/classActions';
+import { getClasses, getClass, setCurrentClass } from '../actions/classActions';
 
 import { Menu } from 'antd';
 // import async from 'async';
@@ -55,6 +55,10 @@ class ClassMenu extends Component {
         })
     }
 
+    handleMenuClick = (e) => {
+        this.props.setCurrentClass(e.key);
+    }
+
     render() {
         return (
             <div>
@@ -63,6 +67,7 @@ class ClassMenu extends Component {
                     theme='dark'
                     style={{ width: '100%' }}
                     mode="inline"
+                    onClick={this.handleMenuClick}
                 >
                     {!this.state.loading ?
                         (
@@ -83,4 +88,4 @@ class ClassMenu extends Component {
 
 const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, { getClasses, getClass })(ClassMenu);
+export default connect(mapStateToProps, { getClasses, getClass, setCurrentClass })(ClassMenu);

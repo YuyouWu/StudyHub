@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_CLASSES, GET_CLASS } from './types';
+import { GET_CLASSES, GET_CLASS, SET_CURRENT_CLASS, GET_CURRENT_CLASS } from './types';
 
 var headers = {
     'x-auth': localStorage.getItem('jwtToken')
@@ -24,5 +24,22 @@ export const getClass = (classID) => dispatch => {
                 payload: res.data
             })
         )
+    )
+}
+
+export const setCurrentClass = (classID) => dispatch => {
+    return (
+        dispatch({
+            type: SET_CURRENT_CLASS,
+            payload: classID
+        })
+    )
+}
+
+export const getCurrentClass = () => dispatch => {
+    return (
+        dispatch({
+            type: GET_CURRENT_CLASS
+        })
     )
 }
